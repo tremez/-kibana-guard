@@ -1,1 +1,1 @@
-# -kibana-guard
+# Kibana Guard

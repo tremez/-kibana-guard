@@ -1,0 +1,14 @@
+{
+  "name": "kibana-guard",
+  "version": "0.1.8",
+  "description": "Kibana Guard",
+  "license": "Unlicense",
+  "repository": {
+    "type": "git",
+    "url": " https://github.com/tremez/kibana-guard.git"
+  },
+  "dependencies": {
+    "http-proxy": "^1.15.2",
+    "node-http-proxy": "^0.2.3"
+  }
+}
