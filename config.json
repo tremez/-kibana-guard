@@ -1,0 +1,8 @@
+{
+  "elk_host":"http://213.155.11.160:80",
+  "port":9000,
+  "users":{
+    "kibanaadmin":"",
+    "testtaras":"pbx74vm"
+  }
+}
