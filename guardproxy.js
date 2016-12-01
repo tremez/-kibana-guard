@@ -3,7 +3,8 @@
  */
 var config = require('./config.json');
 var users=config.users;
-var proxy;
+var httpProxy = require('http-proxy');
+var proxy = httpProxy.createProxyServer({});
 
 function getPrefix(req) {
 	var prefix;
@@ -82,7 +83,6 @@ function onProxyReq (proxyReq, req, res, options) {
 }
 
 function guardProxy(req, res) {
-	var proxy=req.proxy;
 	var prefix = getPrefix(req);
 	// You can define here your custom logic to handle the request
 	// and then proxy the request.
@@ -115,9 +115,9 @@ function guardProxy(req, res) {
 	// });
 	proxy.web(req, res, {proxyTimeout: 600000, target: config.elk_host});
 }
+proxy.on('proxyReq', onProxyReq);
 
 
 module.exports={
-	onProxyReq:onProxyReq,
 	guardProxy:guardProxy
 }

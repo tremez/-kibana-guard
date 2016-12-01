@@ -19,16 +19,12 @@ var http = require('http'),
 	connect = require('connect'),
 	request = require('request'),
 	util = require('util'),
-	bodyParser = require('body-parser'),
-	httpProxy = require('http-proxy'),
-	proxy = httpProxy.createProxyServer({});
+	bodyParser = require('body-parser');
 
 
 var guardproxy=require('./guardproxy');
 
-var onProxyReq=guardproxy.onProxyReq;
 var guardProxy=guardproxy.guardProxy;
-proxy.on('proxyReq', onProxyReq);
 
 var app = express();
 app.use(bodyParser.text({
@@ -44,7 +40,6 @@ app.use(function(req,res,next){
 	})(req, res, next);
 })
 app.use(function(req,res,next){
-	req.proxy=proxy;
 	return next();
 })
 
