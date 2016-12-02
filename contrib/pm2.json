@@ -1,0 +1,16 @@
+{
+  "apps" : [{
+    "name"        : "kibana-guard",
+    "script"      : "index.js",
+    "watch"       : true,
+    "node_args"   : "--harmony",
+    "merge_logs"  : true,
+    "cwd"         : "/usr/src/kibana-guard",
+    "instances"  : 4,
+    "exec_mode"  : "cluster_mode",
+    "error_file" : "/var/log/kibana-guard/error.log",
+    "out_file"   : "/var/log/kibana-guard/out.log",
+    "pid_file"   : "/var/run/kibana-guard.pid"
+
+  }]
+}

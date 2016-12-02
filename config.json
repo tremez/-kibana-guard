@@ -3,7 +3,7 @@
   "port":9000,
   "replaceableIndexes":["asteriskcdrmain-","asteriskcdr-","asteriskqueuelog-"],
   "users":{
-    "kibanaadmin":"_pbx32vm",
-    "testtaras":"_pbx74vm"
+    "tremez":"",
+    "kibanaadmin":""
   }
 }

@@ -18,7 +18,6 @@ passport.use(new BasicStrategy(
 var http = require('http'),
 	connect = require('connect'),
 	request = require('request'),
-	util = require('util'),
 	bodyParser = require('body-parser');
 
 
