@@ -3,7 +3,10 @@
   "port":9000,
   "replaceableIndexes":["asteriskcdrmain-","asteriskcdr-","asteriskqueuelog-"],
   "users":{
-    "tremez":"",
-    "kibanaadmin":""
+    "tremez":{
+      "username":"tremez",
+      "password":"test",
+      "prefix":""
+    }
   }
 }

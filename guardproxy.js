@@ -10,10 +10,14 @@ function getPrefix(req) {
 	var prefix;
 	var user=req.user;
 	if (user) {
-		prefix = users[user.username];
+		prefix = user.prefix;
 	}else{
 		prefix="JOPA";
 	}
+	if(prefix===null){
+		prefix="JOPA";
+	}
+	console.log(prefix);
 	return prefix;
 }
 function isIndexName(indexName) {
