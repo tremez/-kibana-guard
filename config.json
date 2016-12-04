@@ -1,6 +1,6 @@
 {
-  "elk_host":"http://213.155.11.160:80",
-  "port":9000,
+  "elk_host":"http://localhost:8000",
+  "port":80,
   "replaceableIndexes":["asteriskcdrmain-","asteriskcdr-","asteriskqueuelog-"],
   "users":{
     "tremez":{
