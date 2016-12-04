@@ -46,7 +46,12 @@ app.use(bodyParser.text({
 		return true
 	}
 }));
-app.use(session({secret: 'simpleExpressMVC', resave: true, saveUninitialized: true}));
+var FileStore = require('session-file-store')(session);
+
+app.use(session({
+	store: new FileStore(),
+	secret: 'kot vasiliy est kefir'
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
