@@ -1,12 +1,19 @@
 {
-  "elk_host":"http://localhost:8000",
-  "port":80,
+  "port":8000,
   "replaceableIndexes":["asteriskcdrmain-","asteriskcdr-","asteriskqueuelog-"],
+  "sessionSecret":"sadf l;sd fsjkfas kfkjsab dfkjashdbl;f",
   "users":{
     "tremez":{
       "username":"tremez",
       "password":"test",
-      "prefix":""
+      "prefix":"",
+      "elk_host":"http://213.155.11.160:8000"
+    },
+    "pbx32vm":{
+      "username":"pbx32vm",
+      "password":"test",
+      "prefix":"_pbx32vm",
+      "elk_host":"http://213.155.11.160:8001"
     }
   }
 }

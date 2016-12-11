@@ -5,6 +5,7 @@ var config = require('./config.json');
 var users=config.users;
 var httpProxy = require('http-proxy');
 var proxy = httpProxy.createProxyServer({});
+var replaceableIndexes=config.replaceableIndexes;
 
 function getPrefix(req) {
 	var prefix;
@@ -17,7 +18,6 @@ function getPrefix(req) {
 	if(prefix===null){
 		prefix="JOPA";
 	}
-	console.log(prefix);
 	return prefix;
 }
 function isIndexName(indexName) {
@@ -27,16 +27,13 @@ function isIndexName(indexName) {
 	return true;
 }
 function isReplacementNeeded(index) {
-	if (index.indexOf('asteriskcdrmain-') !== -1) {
-		return true;
-	}
-	if (index.indexOf('asteriskcdr-') !== -1) {
-		return true;
-	}
-	if (index.indexOf('asteriskqueuelog-') !== -1) {
-		return true;
-	}
-	return false;
+	var ret=false;
+	replaceableIndexes.forEach(function(el){
+		if (index.indexOf(el) !== -1) {
+			ret= true;
+		}
+	})
+	return ret;
 
 }function prepareIndexName(oldIndexName, prefix) {
 
@@ -71,7 +68,10 @@ function onProxyReq (proxyReq, req, res, options) {
 			}
 
 			if (Object.keys(body).length) {
+				var bodyData=JSON.stringify(body);
+				//proxyReq.setHeader('Content-Length',Buffer.byteLength(bodyData));
 				proxyReq.write(req.body);
+				//console.log(bodyData);
 			} else {
 				proxyReq.write("");
 			}
@@ -117,7 +117,8 @@ function guardProxy(req, res) {
 	// proxy.on('proxyReq', function(proxyReq, req, res, options) {
 	// 	console.log(res);
 	// });
-	proxy.web(req, res, {proxyTimeout: 600000, target: config.elk_host});
+	console.log(req.url,req.method,req.user);
+	proxy.web(req, res, {proxyTimeout: 600000, target: req.user.elk_host});
 }
 proxy.on('proxyReq', onProxyReq);
 

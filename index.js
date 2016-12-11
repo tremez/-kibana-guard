@@ -3,6 +3,8 @@ var users = config.users;
 var express = require('express');
 var passport = require('passport');
 var session = require('express-session');
+var RedisStore = require('connect-redis')(session);
+
 var Users=config.users;
 
 var LocalStrategy = require('passport-local').Strategy;
@@ -46,7 +48,17 @@ app.use(bodyParser.text({
 		return true
 	}
 }));
-app.use(session({secret: 'simpleExpressMVC', resave: true, saveUninitialized: true}));
+//app.use(session({secret: 'simpleExpressMVC', resave: true, saveUninitialized: true}));
+
+app.use(session({
+	store: new RedisStore({
+		"host":"127.0.0.1"
+	}),
+	resave: true,
+	saveUninitialized: true,
+	secret: config['sessionSecret']
+}));
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -54,6 +66,10 @@ app.post('/login', passport.authenticate('local', {successRedirect: '/', failure
 
 app.get('/login', function (req, res, next) {
 	return res.render('login.html')
+});
+app.get('/logout', function(req, res){
+	req.logOut();
+	res.redirect('/'); //Can fire before session is destroyed?
 });
 app.use(function (req, res, next) {
 	if (req.isAuthenticated()) {
