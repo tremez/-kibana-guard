@@ -70,7 +70,7 @@ function onProxyReq (proxyReq, req, res, options) {
 			if (Object.keys(body).length) {
 				var bodyData=JSON.stringify(body);
 				//proxyReq.setHeader('Content-Length',Buffer.byteLength(bodyData));
-				proxyReq.write(req.body);
+				proxyReq.write(bodyData);
 				//console.log(bodyData);
 			} else {
 				proxyReq.write("");
