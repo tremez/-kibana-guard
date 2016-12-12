@@ -23,6 +23,12 @@ program=/opt/kibana/bin/kibana
 args="-c /opt/kibana/config/$name.yml"
 pidfile="/var/run/$name.pid"
 
+user="kibana"
+group="root"
+chroot="/"
+chdir="/"
+nice=""
+
 [ -r /etc/default/$name ] && . /etc/default/$name
 [ -r /etc/sysconfig/$name ] && . /etc/sysconfig/$name
 
